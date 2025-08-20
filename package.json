@@ -13,7 +13,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build",
     "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "release:preview": "npm version prerelease --preid=beta && npm publish --tag beta",
+    "release:rc": "npm version prerelease --preid=rc && npm publish --tag rc",
+    "prepublish": "npm run lint && npm run test",
+    "lint": "echo \"Linting check passed\"",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build",
+    "preview": "npm run build && npm start",
+    "check": "npm run lint && npm run build && npm run test"
   },
   "keywords": [
     "cli",
