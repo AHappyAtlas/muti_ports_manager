@@ -1,0 +1,26 @@
+{
+  "name": "muti-ports-manager",
+  "version": "1.0.0",
+  "description": "一个可以管理多个项目所占用端口的 npm cli 工具",
+  "main": "index.js",
+  "bin": {
+    "muti-ports": "./bin/muti-ports.js"
+  },
+  "scripts": {
+    "start": "node bin/muti-ports.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["cli", "ports", "manager", "projects"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "portfinder": "^1.0.32",
+    "ps-list": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
+}
