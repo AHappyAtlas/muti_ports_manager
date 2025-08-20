@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { MutiPortsManager } = require('../src/manager');
+import { MutiPortsManager } from '../manager';
 
 const manager = new MutiPortsManager();
 manager.run();

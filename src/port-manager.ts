@@ -1,18 +1,23 @@
-const net = require('net');
-const { exec } = require('child_process');
-const { promisify } = require('util');
-const psList = require('ps-list');
+import net from 'net';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import psList from 'ps-list';
+import { ProcessInfo, PortStatus } from './types';
 
 const execAsync = promisify(exec);
 
-class PortManager {
+export class PortManager {
+  private isWindows: boolean;
+  private isMac: boolean;
+  private isLinux: boolean;
+
   constructor() {
     this.isWindows = process.platform === 'win32';
     this.isMac = process.platform === 'darwin';
     this.isLinux = process.platform === 'linux';
   }
 
-  async isPortOccupied(port) {
+  async isPortOccupied(port: number): Promise<boolean> {
     return new Promise((resolve) => {
       const server = net.createServer();
       
@@ -29,7 +34,7 @@ class PortManager {
     });
   }
 
-  async getProcessInfo(port) {
+  async getProcessInfo(port: number): Promise<ProcessInfo | null> {
     try {
       if (this.isWindows) {
         return await this.getProcessInfoWindows(port);
@@ -37,12 +42,13 @@ class PortManager {
         return await this.getProcessInfoUnix(port);
       }
     } catch (error) {
-      console.warn(`获取进程信息失败: ${error.message}`);
+      console.warn(`获取进程信息失败: ${(error as Error).message}`);
       return null;
     }
+    return null;
   }
 
-  async getProcessInfoWindows(port) {
+  private async getProcessInfoWindows(port: number): Promise<ProcessInfo | null> {
     try {
       const { stdout } = await execAsync(`netstat -ano | findstr :${port}`);
       const lines = stdout.trim().split('\n');
@@ -52,8 +58,8 @@ class PortManager {
           const parts = line.trim().split(/\s+/);
           const pid = parts[parts.length - 1];
           
-          if (pid && !isNaN(pid)) {
-            const processInfo = await this.getProcessNameByPid(pid);
+          if (pid && !isNaN(parseInt(pid))) {
+            const processInfo = await this.getProcessNameByPid(parseInt(pid));
             return {
               pid: parseInt(pid),
               name: processInfo.name,
@@ -68,14 +74,14 @@ class PortManager {
     return null;
   }
 
-  async getProcessInfoUnix(port) {
+  private async getProcessInfoUnix(port: number): Promise<ProcessInfo | null> {
     try {
       const { stdout } = await execAsync(`lsof -i :${port} -t`);
       const pids = stdout.trim().split('\n').filter(pid => pid);
       
       if (pids.length > 0) {
         const pid = pids[0];
-        const processInfo = await this.getProcessNameByPid(pid);
+        const processInfo = await this.getProcessNameByPid(parseInt(pid));
         return {
           pid: parseInt(pid),
           name: processInfo.name,
@@ -88,15 +94,15 @@ class PortManager {
     return null;
   }
 
-  async getProcessNameByPid(pid) {
+  private async getProcessNameByPid(pid: number): Promise<{ name: string; cmd: string }> {
     try {
       const processes = await psList();
-      const process = processes.find(p => p.pid === parseInt(pid));
+      const process = processes.find(p => p.pid === pid);
       
       if (process) {
         return {
           name: process.name,
-          cmd: process.cmd || process.command || ''
+          cmd: process.cmd || ''
         };
       }
     } catch (error) {
@@ -122,7 +128,7 @@ class PortManager {
     return { name: 'Unknown', cmd: '' };
   }
 
-  async killProcess(port) {
+  async killProcess(port: number): Promise<boolean> {
     try {
       if (this.isWindows) {
         return await this.killProcessWindows(port);
@@ -130,11 +136,12 @@ class PortManager {
         return await this.killProcessUnix(port);
       }
     } catch (error) {
-      throw new Error(`终止进程失败: ${error.message}`);
+      throw new Error(`终止进程失败: ${(error as Error).message}`);
     }
+    return false;
   }
 
-  async killProcessWindows(port) {
+  private async killProcessWindows(port: number): Promise<boolean> {
     try {
       const { stdout } = await execAsync(`netstat -ano | findstr :${port}`);
       const lines = stdout.trim().split('\n');
@@ -144,7 +151,7 @@ class PortManager {
           const parts = line.trim().split(/\s+/);
           const pid = parts[parts.length - 1];
           
-          if (pid && !isNaN(pid)) {
+          if (pid && !isNaN(parseInt(pid))) {
             await execAsync(`taskkill /PID ${pid} /F`);
             return true;
           }
@@ -153,11 +160,11 @@ class PortManager {
       
       throw new Error(`未找到占用端口 ${port} 的进程`);
     } catch (error) {
-      throw new Error(`终止Windows进程失败: ${error.message}`);
+      throw new Error(`终止Windows进程失败: ${(error as Error).message}`);
     }
   }
 
-  async killProcessUnix(port) {
+  private async killProcessUnix(port: number): Promise<boolean> {
     try {
       const { stdout } = await execAsync(`lsof -i :${port} -t`);
       const pids = stdout.trim().split('\n').filter(pid => pid);
@@ -171,11 +178,11 @@ class PortManager {
       
       throw new Error(`未找到占用端口 ${port} 的进程`);
     } catch (error) {
-      throw new Error(`终止Unix进程失败: ${error.message}`);
+      throw new Error(`终止Unix进程失败: ${(error as Error).message}`);
     }
   }
 
-  async findAvailablePort(startPort = 3000, endPort = 4000) {
+  async findAvailablePort(startPort: number = 3000, endPort: number = 4000): Promise<number> {
     for (let port = startPort; port <= endPort; port++) {
       const isOccupied = await this.isPortOccupied(port);
       if (!isOccupied) {
@@ -185,7 +192,7 @@ class PortManager {
     throw new Error(`在端口范围 ${startPort}-${endPort} 内没有可用端口`);
   }
 
-  async getPortStatus(port) {
+  async getPortStatus(port: number): Promise<PortStatus> {
     const isOccupied = await this.isPortOccupied(port);
     if (isOccupied) {
       const processInfo = await this.getProcessInfo(port);
@@ -203,5 +210,3 @@ class PortManager {
     };
   }
 }
-
-module.exports = { PortManager };
