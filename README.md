@@ -28,6 +28,8 @@ An npm CLI tool for managing ports occupied by multiple projects, with TypeScrip
 
 ![Multi Ports Manager Screenshot](images/screenshot.png)
 
+**Current Version: 1.1.0** | [Changelog](CHANGELOG.md) | [Report Bug](https://github.com/AHappyAtlas/muti-ports-manager/issues)
+
 There are many great port management tools available; however, I didn't find one that really suited my needs for managing multiple projects with named ports and environment variable integration. So I created this enhanced one.
 
 Here's why Multi Ports Manager is special:
@@ -46,6 +48,9 @@ Here's why Multi Ports Manager is special:
 - 💻 **Process Management**: View and terminate processes occupying ports
 - 🎯 **Smart Detection**: Automatically detect port occupancy
 - 🌍 **Internationalization**: Support for English and Chinese languages
+- ⚡ **Enhanced CLI**: Improved error handling and user experience
+- 🔒 **Data Persistence**: Reliable project and port data storage
+- 📊 **Real-time Status**: Live port occupancy information
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -77,7 +82,17 @@ This is an example of how to list things you need to use the software and how to
 npm install npm@latest -g
 ```
 
-### Installation
+### Quick Installation
+
+```bash
+# Install globally from npm
+npm install -g muti-ports-manager
+
+# Start using immediately
+muti-ports --help
+```
+
+### Development Installation
 
 1. **Clone the repo**
    ```bash
@@ -228,7 +243,10 @@ _For more examples, please refer to the [Documentation](https://github.com/AHapp
 - [x] Environment variable integration
 - [x] Cross-platform support
 - [x] Internationalization (English/Chinese)
+- [x] Enhanced CLI interface and error handling
 - [ ] Web dashboard for port management
+- [ ] Docker integration
+- [ ] Port conflict resolution suggestions
 
 See the [open issues](https://github.com/AHappyAtlas/muti-ports-manager/issues) for a full list of proposed features (and known issues).
 
@@ -280,6 +298,13 @@ Use this space to list resources you find helpful and would like to give credit 
 * [React Icons](https://react-icons.github.io/react-icons/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Version History
+
+- **v1.1.0** (Current) - Enhanced CLI interface, improved error handling, and better user experience
+- **v1.0.0** - Initial release with core functionality
+
+For detailed changes, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Development
 

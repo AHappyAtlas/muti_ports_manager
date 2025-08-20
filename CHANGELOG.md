@@ -8,15 +8,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial project setup
-- Multi-project port management
-- Port naming system
-- Environment variable integration
-- Cross-platform support
-- Internationalization (English/Chinese)
+- N/A
 
 ### Changed
 - N/A
+
+### Deprecated
+- N/A
+
+### Removed
+- N/A
+
+### Fixed
+- N/A
+
+### Security
+- N/A
+
+## [1.1.0] - 2024-12-19
+
+### Added
+- Enhanced CLI interface with better error handling
+- Improved project and port management
+- Better environment variable (.env) integration
+- Enhanced process management and port checking
+- Improved multi-language support (EN/CN)
+- Better cross-platform compatibility (Windows, macOS, Linux)
+- Added prepublish scripts for automated releases
+
+### Changed
+- Updated dependencies to latest stable versions
+- Improved TypeScript configuration
+- Enhanced error messages and user feedback
 
 ### Deprecated
 - N/A
@@ -45,6 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
+- **1.1.0** - Enhanced CLI interface and improved functionality
 - **1.0.0** - Initial release with core functionality
 - **Future versions** - Will include web dashboard, Docker integration, and more features
 

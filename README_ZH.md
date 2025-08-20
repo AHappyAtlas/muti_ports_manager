@@ -28,6 +28,8 @@
 
 ![多端口管理器截图](images/screenshot.png)
 
+**当前版本: 1.1.0** | [更新日志](CHANGELOG.md) | [报告问题](https://github.com/AHappyAtlas/muti-ports-manager/issues)
+
 市面上有很多优秀的端口管理工具；但是，我没有找到一个真正适合我需求的工具，能够管理多个项目、命名端口并集成环境变量。所以我创建了这个增强版本。
 
 以下是多端口管理器的特别之处：
@@ -46,6 +48,9 @@
 - 💻 **进程管理**: 查看和终止占用端口的进程
 - 🎯 **智能检测**: 自动检测端口占用情况
 - 🌍 **国际化支持**: 支持英文和中文语言
+- ⚡ **增强CLI**: 改进的错误处理和用户体验
+- 🔒 **数据持久化**: 可靠的项目和端口数据存储
+- 📊 **实时状态**: 实时端口占用信息
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
@@ -68,20 +73,21 @@
 
 这是一个关于如何在本地设置项目的示例说明。要获得本地副本并运行，请按照以下简单示例步骤操作。
 
-### 前置要求
+### 快速安装
 
-这是一个关于如何列出使用软件所需内容以及如何安装它们的示例。
-
-* npm
 ```bash
-npm install npm@latest -g
+# 从 npm 全局安装
+npm install -g muti-ports-manager
+
+# 立即开始使用
+muti-ports --help
 ```
 
-### 安装
+### 开发安装
 
 1. **克隆仓库**
    ```bash
-   git clone https://github.com/AHappyAtlas/muti_ports_manager.git
+   git clone https://github.com/AHappyAtlas/muti-ports_manager.git
    ```
 
 2. **安装 NPM 包**
@@ -228,7 +234,10 @@ _更多示例，请参考 [文档](https://github.com/AHappyAtlas/muti-ports-man
 - [x] 环境变量集成
 - [x] 跨平台支持
 - [x] 国际化（英文/中文）
+- [x] 增强的CLI界面和错误处理
 - [ ] 端口管理 Web 仪表板
+- [ ] Docker 集成
+- [ ] 端口冲突解决建议
 
 
 查看 [开放问题](https://github.com/AHappyAtlas/muti-ports-manager/issues) 了解完整的功能列表（和已知问题）。
@@ -281,6 +290,13 @@ Email - [younixiao@gmail.com](mailto:younixiao@gmail.com )
 * [React Icons](https://react-icons.github.io/react-icons/)
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 版本历史
+
+- **v1.1.0** (当前版本) - 增强的CLI界面，改进的错误处理和更好的用户体验
+- **v1.0.0** - 具有核心功能的初始版本
+
+详细变更请查看 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 开发
 
