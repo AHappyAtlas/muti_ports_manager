@@ -107,7 +107,7 @@ muti-ports --help
 
 5. **更改 git 远程 URL 以避免意外推送到基础项目**
    ```bash
-   git remote set-url origin AHappyAtlas/muti-ports-manager
+   git remote set-url origin AHappyAtlas/muti_ports_manager
    git remote -v # 确认更改
    ```
 
@@ -272,7 +272,7 @@ _更多示例，请参考 [文档](https://github.com/AHappyAtlas/muti_ports_man
 
 Email - [younixiao@gmail.com](mailto:younixiao@gmail.com )
 
-项目链接: [https://github.com/AHappyAtlas/muti-ports-manager](https://github.com/AHappyAtlas/muti-ports-manager)
+项目链接: [muti-ports-manager](https://github.com/AHappyAtlas/muti_ports_manager)
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
@@ -348,6 +348,6 @@ src/
 [npm-url]: https://npmjs.org/package/muti-ports-manager
 [npm-downloads]: https://img.shields.io/npm/dm/muti-ports-manager.svg?style=flat-square
 [license-image]: https://img.shields.io/npm/l/muti-ports-manager.svg?style=flat-square
-[license-url]: https://github.com/AHappyAtlas/muti-ports-manager/blob/main/LICENSE
-[contributors-shield]: https://img.shields.io/github/contributors/AHappyAtlas/muti-ports-manager.svg?style=flat-square
-[contributors-url]: https://github.com/AHappyAtlas/muti-ports-manager/graphs/contributors
+[license-url]: https://github.com/AHappyAtlas/muti_ports_manager/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/AHappyAtlas/muti_ports_manager.svg?style=flat-square
+[contributors-url]: https://github.com/AHappyAtlas/muti_ports_manager/graphs/contributors

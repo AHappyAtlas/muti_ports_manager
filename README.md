@@ -355,6 +355,6 @@ Language can be changed at runtime using the `set-language` command.
 [npm-url]: https://npmjs.org/package/muti-ports-manager
 [npm-downloads]: https://img.shields.io/npm/dm/muti-ports-manager.svg?style=flat-square
 [license-image]: https://img.shields.io/npm/l/muti-ports-manager.svg?style=flat-square
-[license-url]: https://github.com/AHappyAtlas/muti-ports-manager/blob/main/LICENSE
+[license-url]: https://github.com/AHappyAtlas/muti_ports_manager/blob/main/LICENSE
 [contributors-shield]: https://img.shields.io/github/contributors/AHappyAtlas/muti-ports-manager.svg?style=flat-square
-[contributors-url]: https://github.com/AHappyAtlas/muti-ports-manager/graphs/contributors
+[contributors-url]: https://github.com/AHappyAtlas/muti_ports_manager/graphs/contributors
