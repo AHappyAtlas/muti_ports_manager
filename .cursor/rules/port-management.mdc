@@ -1,0 +1,40 @@
+# Port Management Development Guidelines
+
+## Port Operations
+
+- **Port Validation**: Always validate port numbers (1-65535) before operations
+- **Port Availability**: Use Portfinder library to check port availability
+- **Process Management**: Use PS List for cross-platform process detection
+- **Port Conflicts**: Handle port conflicts gracefully with user-friendly messages
+
+## Project-Port Relationships
+
+- **Data Structure**: Maintain clear relationships between projects and ports in [src/project-manager.ts](mdc:src/project-manager.ts)
+- **Port Naming**: Ensure port names are unique within a project
+- **Port Persistence**: Store port configurations persistently in user's home directory
+- **Port Cleanup**: Provide mechanisms to clean up unused ports
+
+## Environment Variable Integration
+
+- **Auto-generation**: Automatically generate environment variables from port configurations
+- **File Formats**: Support multiple .env file formats (.env, .env.local, .env.production)
+- **Variable Naming**: Convert port names to uppercase for environment variables
+- **Conflict Resolution**: Handle conflicts with existing environment variables
+
+## Cross-Platform Compatibility
+
+- **Process Detection**: Use platform-agnostic methods for process management
+- **File Paths**: Handle different path separators for Windows/macOS/Linux
+- **Permissions**: Handle permission issues gracefully across platforms
+- **Shell Commands**: Avoid platform-specific shell commands
+
+## Error Handling
+
+- **Port Busy**: Provide clear information when ports are already in use
+- **Permission Denied**: Handle permission issues when accessing system resources
+- **Network Issues**: Handle network-related port checking failures
+- **Data Corruption**: Handle corrupted configuration files gracefully
+description:
+globs:
+alwaysApply: false
+---

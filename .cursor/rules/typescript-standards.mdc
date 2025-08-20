@@ -1,0 +1,34 @@
+# TypeScript Coding Standards
+
+## Code Style & Structure
+
+- **Imports**: Use ES6 import/export syntax, organize imports logically
+- **Types**: Always define proper TypeScript interfaces in [src/types.ts](mdc:src/types.ts)
+- **Async/Await**: Prefer async/await over Promises for better readability
+- **Error Handling**: Use try-catch blocks and proper error types
+- **Comments**: Use JSDoc style comments for public functions and interfaces
+
+## Naming Conventions
+
+- **Files**: Use kebab-case for file names (e.g., `port-manager.ts`)
+- **Classes**: Use PascalCase (e.g., `PortManager`)
+- **Functions**: Use camelCase (e.g., `addPort`)
+- **Constants**: Use UPPER_SNAKE_CASE (e.g., `DEFAULT_PORT`)
+- **Interfaces**: Use PascalCase with descriptive names (e.g., `PortConfig`)
+
+## Type Safety
+
+- **Strict Mode**: Always enable strict TypeScript settings
+- **No Any**: Avoid using `any` type, prefer specific types or `unknown`
+- **Optional Properties**: Use `?` for optional properties, `!` for non-null assertions sparingly
+- **Union Types**: Use union types for variables that can have multiple specific values
+
+## Error Handling
+
+- **Custom Errors**: Create specific error classes extending `Error`
+- **Error Messages**: Use the i18n system for user-facing error messages
+- **Logging**: Use console.error for errors, console.log for debugging (consider using a proper logger in production)
+description:
+globs:
+alwaysApply: false
+---

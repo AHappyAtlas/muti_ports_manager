@@ -1,0 +1,39 @@
+# CLI Development Guidelines
+
+## Commander.js Usage
+
+- **Command Structure**: Use Commander.js for CLI command definitions in [src/bin/muti-ports.ts](mdc:src/bin/muti-ports.ts)
+- **Option Parsing**: Always validate required options and provide helpful error messages
+- **Help Text**: Provide clear, concise help text for each command
+- **Exit Codes**: Use appropriate exit codes (0 for success, 1 for errors)
+
+## User Experience
+
+- **Interactive Prompts**: Use Inquirer.js for complex user input when needed
+- **Color Output**: Use Chalk for colored output to improve readability
+- **Progress Indicators**: Show progress for long-running operations
+- **Error Messages**: Provide actionable error messages with suggestions
+
+## Command Organization
+
+- **Grouping**: Group related commands logically
+- **Aliases**: Provide short aliases for common commands
+- **Defaults**: Set sensible defaults for optional parameters
+- **Validation**: Validate input parameters before processing
+
+## Internationalization
+
+- **User Messages**: All user-facing text should use the i18n system from [src/i18n/index.ts](mdc:src/i18n/index.ts)
+- **Language Detection**: Respect user's language preference
+- **Fallbacks**: Provide English fallbacks for missing translations
+- **Consistency**: Use consistent terminology across all languages
+
+## Testing CLI Commands
+
+- **Mock Input**: Test commands with various input combinations
+- **Error Cases**: Test error handling and edge cases
+- **Integration**: Test command interactions and data flow
+description:
+globs:
+alwaysApply: false
+---

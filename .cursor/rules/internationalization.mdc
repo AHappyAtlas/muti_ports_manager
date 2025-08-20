@@ -1,0 +1,40 @@
+# Internationalization (i18n) Guidelines
+
+## Language Support
+
+- **Supported Languages**: English (en) and Chinese (zh)
+- **Default Language**: English is the default fallback language
+- **Language Detection**: Automatically detect user's preferred language
+- **Runtime Switching**: Allow users to change language at runtime
+
+## Translation Structure
+
+- **Key Organization**: Use hierarchical keys for better organization (e.g., `commands.add-project.success`)
+- **Context Awareness**: Provide context-specific translations
+- **Pluralization**: Handle plural forms appropriately for each language
+- **Formatting**: Use consistent formatting for dates, numbers, and currencies
+
+## Implementation Details
+
+- **File Structure**: Store translations in [src/i18n/config.ts](mdc:src/i18n/config.ts)
+- **Main Interface**: Use [src/i18n/index.ts](mdc:src/i18n/index.ts) as the main i18n interface
+- **Type Safety**: Ensure translation keys are type-safe with TypeScript
+- **Fallbacks**: Always provide fallback translations for missing keys
+
+## User Experience
+
+- **Consistent Terminology**: Use consistent technical terms across languages
+- **Cultural Considerations**: Adapt content for different cultural contexts
+- **Accessibility**: Ensure translations support screen readers and assistive technologies
+- **Performance**: Minimize translation lookup overhead
+
+## Maintenance
+
+- **Translation Updates**: Keep translations synchronized with code changes
+- **Quality Checks**: Review translations for accuracy and cultural appropriateness
+- **User Feedback**: Collect feedback on translation quality
+- **Documentation**: Document translation conventions and guidelines
+description:
+globs:
+alwaysApply: false
+---

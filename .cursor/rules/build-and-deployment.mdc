@@ -1,0 +1,40 @@
+# Build and Deployment Guidelines
+
+## Build Process
+
+- **TypeScript Compilation**: Use `npm run build` to compile TypeScript to JavaScript
+- **Output Directory**: Compiled files go to `dist/` directory
+- **Source Maps**: Generate source maps for debugging
+- **Clean Builds**: Clean `dist/` directory before each build
+
+## Package Management
+
+- **Dependencies**: Keep production dependencies minimal in [package.json](mdc:package.json)
+- **Dev Dependencies**: Use dev dependencies for build tools and testing
+- **Version Management**: Use semantic versioning for releases
+- **Lock Files**: Commit package-lock.json for reproducible builds
+
+## Distribution
+
+- **NPM Package**: Configure [package.json](mdc:package.json) for npm publishing
+- **Binary Configuration**: Ensure binary path points to compiled JavaScript
+- **Entry Points**: Define main and bin entry points correctly
+- **Files Field**: Include only necessary files in npm package
+
+## Development Workflow
+
+- **Development Mode**: Use `npm run dev` for development with ts-node
+- **Hot Reload**: Consider implementing file watching for development
+- **Testing**: Run tests before building and deploying
+- **Linting**: Use TypeScript compiler for type checking
+
+## Documentation
+
+- **README Updates**: Keep [README.md](mdc:README.md) and [README_ZH.md](mdc:README_ZH.md) synchronized
+- **API Documentation**: Document public APIs and interfaces
+- **Change Log**: Maintain [CHANGELOG.md](mdc:CHANGELOG.md) for version history
+- **Examples**: Provide clear usage examples in documentation
+description:
+globs:
+alwaysApply: false
+---

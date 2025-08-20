@@ -1,0 +1,34 @@
+# Multi Ports Manager - Project Structure Guide
+
+This is a TypeScript-based CLI tool for managing multiple project ports. The main entry point is [src/bin/muti-ports.ts](mdc:src/bin/muti-ports.ts), which serves as the CLI interface.
+
+## Core Architecture
+
+- **Entry Point**: [src/index.ts](mdc:src/index.ts) - Main application logic
+- **CLI Interface**: [src/bin/muti-ports.ts](mdc:src/bin/muti-ports.ts) - Command-line interface using Commander.js
+- **Core Managers**:
+  - [src/manager.ts](mdc:src/manager.ts) - Main manager orchestrating all operations
+  - [src/project-manager.ts](mdc:src/project-manager.ts) - Handles project CRUD operations
+  - [src/port-manager.ts](mdc:src/port-manager.ts) - Manages port allocation and checking
+  - [src/env-manager.ts](mdc:src/env-manager.ts) - Handles .env file operations
+- **Internationalization**: [src/i18n/index.ts](mdc:src/i18n/index.ts) - Multi-language support (EN/CN)
+- **Type Definitions**: [src/types.ts](mdc:src/types.ts) - TypeScript interfaces and types
+
+## Build & Configuration
+
+- **TypeScript Config**: [tsconfig.json](mdc:tsconfig.json) - TypeScript compilation settings
+- **Package Config**: [package.json](mdc:package.json) - Dependencies and build scripts
+- **Build Output**: Compiled JavaScript goes to `dist/` directory
+
+## Key Dependencies
+
+- **Commander.js**: CLI framework
+- **Chalk**: Terminal colorization
+- **Inquirer**: Interactive prompts
+- **Portfinder**: Port availability detection
+- **PS List**: Process management
+- **Dotenv**: Environment variable handling
+description:
+globs:
+alwaysApply: false
+---
