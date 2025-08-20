@@ -1,10 +1,43 @@
 # 多端口管理器
 
+[![NPM 版本][npm-image]][npm-url]
+[![下载统计][npm-downloads]][npm-url]
+[![许可证][license-image]][license-url]
+
 一个可以管理多个项目所占用端口的 npm CLI 工具，支持 TypeScript。
 
 **[English](README.md)** | **[中文文档](README_ZH.md)**
 
-## 功能特性
+<!-- 目录 -->
+<details>
+<summary>目录</summary>
+<ol>
+<li><a href="#关于项目">关于项目</a></li>
+<li><a href="#技术栈">技术栈</a></li>
+<li><a href="#快速开始">快速开始</a></li>
+<li><a href="#使用方法">使用方法</a></li>
+<li><a href="#开发路线">开发路线</a></li>
+<li><a href="#贡献指南">贡献指南</a></li>
+<li><a href="#许可证">许可证</a></li>
+<li><a href="#联系方式">联系方式</a></li>
+<li><a href="#致谢">致谢</a></li>
+</ol>
+</details>
+
+## 关于项目
+
+![多端口管理器截图](images/screenshot.png)
+
+市面上有很多优秀的端口管理工具；但是，我没有找到一个真正适合我需求的工具，能够管理多个项目、命名端口并集成环境变量。所以我创建了这个增强版本。
+
+以下是多端口管理器的特别之处：
+
+* **你的时间应该专注于** 创造令人惊叹的东西。一个解决端口冲突并帮助高效管理开发环境的项目
+* **你不应该重复做同样的任务** 比如手动检查端口可用性和更新 .env 文件
+* **智能端口管理** 具有自动检测、命名和环境变量集成功能
+* **跨平台支持** 支持 Windows、macOS 和 Linux
+
+### 功能特性
 
 - 🚀 **多项目管理**: 为不同项目分配和管理端口
 - 🔧 **端口名称**: 每个端口都有可自定义的名称
@@ -14,13 +47,69 @@
 - 🎯 **智能检测**: 自动检测端口占用情况
 - 🌍 **国际化支持**: 支持英文和中文语言
 
-## 安装
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
+## 技术栈
+
+本节列出了用于启动此项目的主要框架/库。
+
+* [Node.js](https://nodejs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Commander.js](https://github.com/tj/commander.js)
+* [Chalk](https://github.com/chalk/chalk)
+* [Inquirer](https://github.com/SBoudrias/Inquirer.js)
+* [Portfinder](https://github.com/http-party/node-portfinder)
+* [PS List](https://github.com/sindresorhus/ps-list)
+* [Dotenv](https://github.com/motdotla/dotenv)
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 快速开始
+
+这是一个关于如何在本地设置项目的示例说明。要获得本地副本并运行，请按照以下简单示例步骤操作。
+
+### 前置要求
+
+这是一个关于如何列出使用软件所需内容以及如何安装它们的示例。
+
+* npm
 ```bash
-npm install -g muti-ports-manager
+npm install npm@latest -g
 ```
 
+### 安装
+
+1. **克隆仓库**
+   ```bash
+   git clone https://github.com/your_username/muti-ports-manager.git
+   ```
+
+2. **安装 NPM 包**
+   ```bash
+   npm install
+   ```
+
+3. **构建项目**
+   ```bash
+   npm run build
+   ```
+
+4. **全局安装（可选）**
+   ```bash
+   npm install -g muti-ports-manager
+   ```
+
+5. **更改 git 远程 URL 以避免意外推送到基础项目**
+   ```bash
+   git remote set-url origin your_username/muti-ports-manager
+   git remote -v # 确认更改
+   ```
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
 ## 使用方法
+
+使用此空间展示项目如何使用的有用示例。额外的截图、代码示例和演示在此空间中效果很好。
 
 ### 基本命令
 
@@ -86,37 +175,37 @@ muti-ports list-env
 muti-ports list-env -e .env.production
 ```
 
-## 命令选项
+### 命令选项
 
-### add-project
+#### add-project
 - `-n, --name <name>`: 项目名称
 
-### add-port
+#### add-port
 - `-p, --project <name>`: 项目名称
 - `-P, --port <port>`: 端口号
 - `-N, --name <name>`: 端口名称
 
-### update-port-name
+#### update-port-name
 - `-p, --project <name>`: 项目名称
 - `-P, --port <port>`: 端口号
 - `-N, --name <name>`: 新的端口名称
 
-### add-to-env
+#### add-to-env
 - `-p, --project <name>`: 项目名称
 - `-e, --env-file <path>`: .env文件路径
 - `-n, --name <name>`: 端口名称
 
-### remove-from-env
+#### remove-from-env
 - `-e, --env-file <path>`: .env文件路径
 - `-n, --name <name>`: 端口名称
 
-### list-env
+#### list-env
 - `-e, --env-file <path>`: .env文件路径
 
-### set-language
+#### set-language
 - `<language>`: 语言代码 (en/zh)
 
-## 环境变量格式
+### 环境变量格式
 
 端口名称会自动转换为全大写格式添加到.env文件中：
 
@@ -127,6 +216,75 @@ API_PORT=3000
 # 如果端口名称为 "db_port"，端口号为 5432
 DB_PORT=5432
 ```
+
+_更多示例，请参考 [文档](https://github.com/your_username/muti-ports-manager)_
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 开发路线
+
+- [x] 多项目端口管理
+- [x] 端口命名系统
+- [x] 环境变量集成
+- [x] 跨平台支持
+- [x] 国际化（英文/中文）
+- [ ] 端口管理 Web 仪表板
+- [ ] 端口冲突解决
+- [ ] Docker 集成
+- [ ] Kubernetes 端口管理
+- [ ] 端口使用分析
+- [ ] 团队协作功能
+
+查看 [开放问题](https://github.com/your_username/muti-ports-manager/issues) 了解完整的功能列表（和已知问题）。
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 贡献指南
+
+贡献是使开源社区成为学习、启发和创造的令人惊叹的地方的原因。你做出的任何贡献都**非常感激**。
+
+如果你有一个让这个项目变得更好的建议，请 fork 仓库并创建 pull request。你也可以简单地打开一个带有"enhancement"标签的问题。别忘了给项目一个星标！再次感谢！
+
+1. Fork 项目
+2. 创建你的功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m '添加一些 AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开 Pull Request
+
+### 顶级贡献者：
+
+[![贡献者][contributors-shield]][contributors-url]
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 许可证
+
+根据 MIT 许可证分发。有关更多信息，请参阅 `LICENSE`。
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 联系方式
+
+你的姓名 - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+
+项目链接: [https://github.com/your_username/muti-ports-manager](https://github.com/your_username/muti-ports-manager)
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
+
+## 致谢
+
+使用此空间列出你发现有用并想要致谢的资源。我包含了一些我最喜欢的内容来开始！
+
+* [选择开源许可证](https://choosealicense.com)
+* [GitHub Emoji 备忘单](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+* [Malven's Flexbox 备忘单](https://flexbox.malven.co/)
+* [Malven's Grid 备忘单](https://grid.malven.co/)
+* [Img Shields](https://shields.io)
+* [GitHub Pages](https://pages.github.com)
+* [Font Awesome](https://fontawesome.com)
+* [React Icons](https://react-icons.github.io/react-icons/)
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
 ## 开发
 
@@ -172,6 +330,12 @@ src/
 
 可以使用 `set-language` 命令在运行时更改语言。
 
-## 许可证
-
-MIT
+<!-- MARKDOWN 链接和图片 -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[npm-image]: https://img.shields.io/npm/v/muti-ports-manager.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/muti-ports-manager
+[npm-downloads]: https://img.shields.io/npm/dm/muti-ports-manager.svg?style=flat-square
+[license-image]: https://img.shields.io/npm/l/muti-ports-manager.svg?style=flat-square
+[license-url]: https://github.com/your_username/muti-ports-manager/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/your_username/muti-ports-manager.svg?style=flat-square
+[contributors-url]: https://github.com/your_username/muti-ports-manager/graphs/contributors
