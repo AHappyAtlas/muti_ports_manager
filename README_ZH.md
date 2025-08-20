@@ -81,7 +81,7 @@ npm install npm@latest -g
 
 1. **克隆仓库**
    ```bash
-   git clone https://github.com/your_username/muti-ports-manager.git
+   git clone https://github.com/AHappyAtlas/muti_ports_manager.git
    ```
 
 2. **安装 NPM 包**
@@ -101,7 +101,7 @@ npm install npm@latest -g
 
 5. **更改 git 远程 URL 以避免意外推送到基础项目**
    ```bash
-   git remote set-url origin your_username/muti-ports-manager
+   git remote set-url origin AHappyAtlas/muti-ports-manager
    git remote -v # 确认更改
    ```
 
@@ -217,7 +217,7 @@ API_PORT=3000
 DB_PORT=5432
 ```
 
-_更多示例，请参考 [文档](https://github.com/your_username/muti-ports-manager)_
+_更多示例，请参考 [文档](https://github.com/AHappyAtlas/muti-ports-manager)_
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
@@ -229,13 +229,9 @@ _更多示例，请参考 [文档](https://github.com/your_username/muti-ports-m
 - [x] 跨平台支持
 - [x] 国际化（英文/中文）
 - [ ] 端口管理 Web 仪表板
-- [ ] 端口冲突解决
-- [ ] Docker 集成
-- [ ] Kubernetes 端口管理
-- [ ] 端口使用分析
-- [ ] 团队协作功能
 
-查看 [开放问题](https://github.com/your_username/muti-ports-manager/issues) 了解完整的功能列表（和已知问题）。
+
+查看 [开放问题](https://github.com/AHappyAtlas/muti-ports-manager/issues) 了解完整的功能列表（和已知问题）。
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
@@ -265,9 +261,9 @@ _更多示例，请参考 [文档](https://github.com/your_username/muti-ports-m
 
 ## 联系方式
 
-你的姓名 - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+Email - [younixiao@gmail.com](mailto:younixiao@gmail.com )
 
-项目链接: [https://github.com/your_username/muti-ports-manager](https://github.com/your_username/muti-ports-manager)
+项目链接: [https://github.com/AHappyAtlas/muti-ports-manager](https://github.com/AHappyAtlas/muti-ports-manager)
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
@@ -336,6 +332,6 @@ src/
 [npm-url]: https://npmjs.org/package/muti-ports-manager
 [npm-downloads]: https://img.shields.io/npm/dm/muti-ports-manager.svg?style=flat-square
 [license-image]: https://img.shields.io/npm/l/muti-ports-manager.svg?style=flat-square
-[license-url]: https://github.com/your_username/muti-ports-manager/blob/main/LICENSE
-[contributors-shield]: https://img.shields.io/github/contributors/your_username/muti-ports-manager.svg?style=flat-square
-[contributors-url]: https://github.com/your_username/muti-ports-manager/graphs/contributors
+[license-url]: https://github.com/AHappyAtlas/muti-ports-manager/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/AHappyAtlas/muti-ports-manager.svg?style=flat-square
+[contributors-url]: https://github.com/AHappyAtlas/muti-ports-manager/graphs/contributors

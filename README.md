@@ -81,7 +81,7 @@ npm install npm@latest -g
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your_username/muti-ports-manager.git
+   git clone https://github.com/AHappyAtlas/muti-ports-manager.git
    ```
 
 2. **Install NPM packages**
@@ -101,7 +101,7 @@ npm install npm@latest -g
 
 5. **Change git remote url to avoid accidental pushes to base project**
    ```bash
-   git remote set-url origin your_username/muti-ports-manager
+   git remote set-url origin AHappyAtlas/muti-ports-manager
    git remote -v # confirm the changes
    ```
 
@@ -217,7 +217,7 @@ API_PORT=3000
 DB_PORT=5432
 ```
 
-_For more examples, please refer to the [Documentation](https://github.com/your_username/muti-ports-manager)_
+_For more examples, please refer to the [Documentation](https://github.com/AHappyAtlas/muti-ports-manager)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -229,13 +229,8 @@ _For more examples, please refer to the [Documentation](https://github.com/your_
 - [x] Cross-platform support
 - [x] Internationalization (English/Chinese)
 - [ ] Web dashboard for port management
-- [ ] Port conflict resolution
-- [ ] Docker integration
-- [ ] Kubernetes port management
-- [ ] Port usage analytics
-- [ ] Team collaboration features
 
-See the [open issues](https://github.com/your_username/muti-ports-manager/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/AHappyAtlas/muti-ports-manager/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -265,9 +260,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+Email - [younixiao@gmail.com](mailto:younixiao@gmail.com )
 
-Project Link: [https://github.com/your_username/muti-ports-manager](https://github.com/your_username/muti-ports-manager)
+Project Link: [https://github.com/AHappyAtlas/muti-ports-manager](https://github.com/AHappyAtlas/muti-ports-manager)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -336,6 +331,6 @@ Language can be changed at runtime using the `set-language` command.
 [npm-url]: https://npmjs.org/package/muti-ports-manager
 [npm-downloads]: https://img.shields.io/npm/dm/muti-ports-manager.svg?style=flat-square
 [license-image]: https://img.shields.io/npm/l/muti-ports-manager.svg?style=flat-square
-[license-url]: https://github.com/your_username/muti-ports-manager/blob/main/LICENSE
-[contributors-shield]: https://img.shields.io/github/contributors/your_username/muti-ports-manager.svg?style=flat-square
-[contributors-url]: https://github.com/your_username/muti-ports-manager/graphs/contributors
+[license-url]: https://github.com/AHappyAtlas/muti-ports-manager/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/AHappyAtlas/muti-ports-manager.svg?style=flat-square
+[contributors-url]: https://github.com/AHappyAtlas/muti-ports-manager/graphs/contributors
