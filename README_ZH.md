@@ -26,7 +26,7 @@
 
 ## 关于项目
 
-![多端口管理器截图](images/screenshot.png)
+![多端口管理器截图](images/screenshot.jpg)
 
 **当前版本: 1.1.0** | [更新日志](CHANGELOG.md) | [报告问题](https://github.com/AHappyAtlas/muti-ports-manager/issues)
 
