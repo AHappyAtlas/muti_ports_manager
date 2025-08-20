@@ -34,16 +34,14 @@
 ## 📦 发布详情
 
 - **npm包**: https://www.npmjs.com/package/muti-ports-manager
-- **GitHub**: https://github.com/AHappyAtlas/muti-ports-manager
+- **GitHub**: https://github.com/AHappyAtlas/muti_ports_manager
+
 - **版本标签**: v1.1.0
 - **包大小**: 42.5 kB (压缩), 204.0 kB (解压)
 
 ## 🎯 下一步计划
 
 - [ ] Web 仪表板界面
-- [ ] Docker 集成支持
-- [ ] 端口冲突解决建议
-- [ ] 更多语言支持
 
 ## 📋 安装使用
 
@@ -63,7 +61,7 @@ muti-ports add-project
 - [完整更新日志](CHANGELOG.md)
 - [英文文档](README.md)
 - [中文文档](README_ZH.md)
-- [GitHub Issues](https://github.com/AHappyAtlas/muti-ports-manager/issues)
+- [GitHub Issues](https://github.com/AHappyAtlas/muti_ports_manager/issues)
 
 ---
 

@@ -28,7 +28,7 @@
 
 ![多端口管理器截图](images/screenshot.jpg)
 
-**当前版本: 1.1.0** | [更新日志](CHANGELOG.md) | [报告问题](https://github.com/AHappyAtlas/muti-ports-manager/issues)
+**当前版本: 1.1.0** | [更新日志](https://github.com/AHappyAtlas/muti_ports_manager/blob/main/CHANGELOG.md) | [报告问题](https://github.com/AHappyAtlas/muti_ports_manager/issues)
 
 市面上有很多优秀的端口管理工具；但是，我没有找到一个真正适合我需求的工具，能够管理多个项目、命名端口并集成环境变量。所以我创建了这个增强版本。
 
@@ -223,7 +223,7 @@ API_PORT=3000
 DB_PORT=5432
 ```
 
-_更多示例，请参考 [文档](https://github.com/AHappyAtlas/muti-ports-manager)_
+_更多示例，请参考 [文档](https://github.com/AHappyAtlas/muti_ports_manager)_
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 
@@ -240,7 +240,7 @@ _更多示例，请参考 [文档](https://github.com/AHappyAtlas/muti-ports-man
 - [ ] 端口冲突解决建议
 
 
-查看 [开放问题](https://github.com/AHappyAtlas/muti-ports-manager/issues) 了解完整的功能列表（和已知问题）。
+查看 [开放问题](https://github.com/AHappyAtlas/muti_ports_manager/issues) 了解完整的功能列表（和已知问题）。
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 

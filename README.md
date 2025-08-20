@@ -6,7 +6,7 @@
 
 An npm CLI tool for managing ports occupied by multiple projects, with TypeScript support.
 
-**[中文文档](README_ZH.md)** | **[English](README.md)**
+**[中文文档](https://github.com/AHappyAtlas/muti_ports_manager/blob/main/README_ZH.md)** | **[English](https://github.com/AHappyAtlas/muti_ports_manager/blob/main/README.md)**
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -28,7 +28,7 @@ An npm CLI tool for managing ports occupied by multiple projects, with TypeScrip
 
 ![Multi Ports Manager Screenshot](images/screenshot.jpg)
 
-**Current Version: 1.1.0** | [Changelog](CHANGELOG.md) | [Report Bug](https://github.com/AHappyAtlas/muti-ports-manager/issues)
+**Current Version: 1.1.0** | [Changelog](CHANGELOG.md) | [Report Bug](https://github.com/AHappyAtlas/muti_ports_manager/issues)
 
 There are many great port management tools available; however, I didn't find one that really suited my needs for managing multiple projects with named ports and environment variable integration. So I created this enhanced one.
 
@@ -96,7 +96,7 @@ muti-ports --help
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/AHappyAtlas/muti-ports-manager.git
+   git clone https://github.com/AHappyAtlas/muti_ports_manager.git
    ```
 
 2. **Install NPM packages**
@@ -245,10 +245,9 @@ _For more examples, please refer to the [Documentation](https://github.com/AHapp
 - [x] Internationalization (English/Chinese)
 - [x] Enhanced CLI interface and error handling
 - [ ] Web dashboard for port management
-- [ ] Docker integration
-- [ ] Port conflict resolution suggestions
 
-See the [open issues](https://github.com/AHappyAtlas/muti-ports-manager/issues) for a full list of proposed features (and known issues).
+
+See the [open issues](https://github.com/AHappyAtlas/muti_ports_manager/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -280,7 +279,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Email - [younixiao@gmail.com](mailto:younixiao@gmail.com )
 
-Project Link: [https://github.com/AHappyAtlas/muti-ports-manager](https://github.com/AHappyAtlas/muti-ports-manager)
+Project Link: [https://github.com/AHappyAtlas/muti_ports_manager](https://github.com/AHappyAtlas/muti_ports_manager)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -304,7 +303,7 @@ Use this space to list resources you find helpful and would like to give credit 
 - **v1.1.0** (Current) - Enhanced CLI interface, improved error handling, and better user experience
 - **v1.0.0** - Initial release with core functionality
 
-For detailed changes, see [CHANGELOG.md](CHANGELOG.md).
+For detailed changes, see [CHANGELOG.md](https://github.com/AHappyAtlas/muti_ports_manager/blob/main/CHANGELOG.md).
 
 ## Development
 
