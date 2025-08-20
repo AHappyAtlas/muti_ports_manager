@@ -1,3 +1,5 @@
+export type Language = 'en' | 'zh';
+
 export interface Port {
   number: number;
   name: string;

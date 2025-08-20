@@ -5,6 +5,8 @@ declare class MutiPortsManager {
     private envManager;
     constructor();
     private setupCommands;
+    private setLanguage;
+    private showLanguage;
     private addProject;
     private addPort;
     private removeProject;

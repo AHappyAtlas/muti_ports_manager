@@ -1,148 +1,177 @@
-# Muti Ports Manager
+# Multi Ports Manager
 
-一个可以管理多个项目所占用端口的 npm CLI 工具，支持 TypeScript。
+An npm CLI tool for managing ports occupied by multiple projects, with TypeScript support.
 
-## 功能特性
+**[中文文档](README_ZH.md)** | **[English](README.md)**
 
-- 🚀 **多项目管理**: 为不同项目分配和管理端口
-- 🔧 **端口名称**: 每个端口都有可自定义的名称
-- 📝 **环境变量管理**: 自动将端口信息添加到.env文件
-- 🖥️ **跨平台支持**: 支持 Windows、macOS 和 Linux
-- 💻 **进程管理**: 查看和终止占用端口的进程
-- 🎯 **智能检测**: 自动检测端口占用情况
+## Features
 
-## 安装
+- 🚀 **Multi-Project Management**: Allocate and manage ports for different projects
+- 🔧 **Port Naming**: Each port has a customizable name
+- 📝 **Environment Variable Management**: Automatically add port information to .env files
+- 🖥️ **Cross-Platform Support**: Supports Windows, macOS, and Linux
+- 💻 **Process Management**: View and terminate processes occupying ports
+- 🎯 **Smart Detection**: Automatically detect port occupancy
+- 🌍 **Internationalization**: Support for English and Chinese languages
+
+## Installation
 
 ```bash
 npm install -g muti-ports-manager
 ```
 
-## 使用方法
+## Usage
 
-### 基本命令
+### Basic Commands
 
 ```bash
-# 添加项目
+# Add a project
 muti-ports add-project
 
-# 添加端口到项目
+# Add a port to a project
 muti-ports add-port
 
-# 列出所有项目和端口
+# List all projects and ports
 muti-ports list
 
-# 检查端口占用
+# Check port occupancy
 muti-ports check-port 3000
 
-# 终止占用端口的进程
+# Terminate process occupying a port
 muti-ports kill-port 3000
 ```
 
-### 端口名称管理
+### Language Management
 
 ```bash
-# 添加带名称的端口
+# Set language to English
+muti-ports set-language en
+
+# Set language to Chinese
+muti-ports set-language zh
+
+# Show current language
+muti-ports language
+```
+
+### Port Name Management
+
+```bash
+# Add a port with a name
 muti-ports add-port -p myproject -P 3000 -N API_PORT
 
-# 更新端口名称
+# Update port name
 muti-ports update-port-name -p myproject -P 3000 -N NEW_API_PORT
 
-# 删除端口
+# Remove a port
 muti-ports remove-port -p myproject -P 3000
 ```
 
-### 环境变量管理
+### Environment Variable Management
 
 ```bash
-# 将端口添加到.env文件
+# Add a port to .env file
 muti-ports add-to-env -n API_PORT
 
-# 指定项目和.env文件路径
+# Specify project and .env file path
 muti-ports add-to-env -p myproject -e .env.local -n API_PORT
 
-# 从.env文件移除端口
+# Remove a port from .env file
 muti-ports remove-from-env -n API_PORT
 
-# 列出.env文件中的端口变量
+# List port variables in .env file
 muti-ports list-env
 
-# 指定.env文件路径
+# Specify .env file path
 muti-ports list-env -e .env.production
 ```
 
-## 命令选项
+## Command Options
 
 ### add-project
-- `-n, --name <name>`: 项目名称
+- `-n, --name <name>`: Project name
 
 ### add-port
-- `-p, --project <name>`: 项目名称
-- `-P, --port <port>`: 端口号
-- `-N, --name <name>`: 端口名称
+- `-p, --project <name>`: Project name
+- `-P, --port <port>`: Port number
+- `-N, --name <name>`: Port name
 
 ### update-port-name
-- `-p, --project <name>`: 项目名称
-- `-P, --port <port>`: 端口号
-- `-N, --name <name>`: 新的端口名称
+- `-p, --project <name>`: Project name
+- `-P, --port <port>`: Port number
+- `-N, --name <name>`: New port name
 
 ### add-to-env
-- `-p, --project <name>`: 项目名称
-- `-e, --env-file <path>`: .env文件路径
-- `-n, --name <name>`: 端口名称
+- `-p, --project <name>`: Project name
+- `-e, --env-file <path>`: .env file path
+- `-n, --name <name>`: Port name
 
 ### remove-from-env
-- `-e, --env-file <path>`: .env文件路径
-- `-n, --name <name>`: 端口名称
+- `-e, --env-file <path>`: .env file path
+- `-n, --name <name>`: Port name
 
 ### list-env
-- `-e, --env-file <path>`: .env文件路径
+- `-e, --env-file <path>`: .env file path
 
-## 环境变量格式
+### set-language
+- `<language>`: Language code (en/zh)
 
-端口名称会自动转换为全大写格式添加到.env文件中：
+## Environment Variable Format
+
+Port names are automatically converted to uppercase format when added to .env files:
 
 ```env
-# 如果端口名称为 "API_PORT"，端口号为 3000
+# If port name is "API_PORT" and port number is 3000
 API_PORT=3000
 
-# 如果端口名称为 "db_port"，端口号为 5432
+# If port name is "db_port" and port number is 5432
 DB_PORT=5432
 ```
 
-## 开发
+## Development
 
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 构建项目
+# Build project
 npm run build
 
-# 开发模式运行
+# Run in development mode
 npm run dev
 
-# 运行构建后的版本
+# Run built version
 npm start
 ```
 
-## 项目结构
+## Project Structure
 
 ```
 src/
-├── types.ts          # TypeScript 类型定义
-├── project-manager.ts # 项目管理器
-├── port-manager.ts   # 端口管理器
-├── env-manager.ts    # 环境变量管理器
-├── manager.ts        # 主管理器
-├── index.ts          # 入口文件
+├── types.ts          # TypeScript type definitions
+├── project-manager.ts # Project manager
+├── port-manager.ts   # Port manager
+├── env-manager.ts    # Environment variable manager
+├── manager.ts        # Main manager
+├── i18n/
+│   └── index.ts     # Internationalization manager
+├── index.ts          # Entry file
 └── bin/
-    └── muti-ports.ts # CLI 入口
+    └── muti-ports.ts # CLI entry
 ```
 
-## 数据存储
+## Data Storage
 
-项目数据存储在用户主目录下的 `.muti-ports-manager/projects.json` 文件中。
+Project data is stored in the `.muti-ports-manager/projects.json` file in the user's home directory.
 
-## 许可证
+## Internationalization
+
+The tool supports multiple languages:
+- **English (en)**: Default language
+- **Chinese (zh)**: Full Chinese localization
+
+Language can be changed at runtime using the `set-language` command.
+
+## License
 
 MIT

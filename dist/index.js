@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnvManager = exports.PortManager = exports.ProjectManager = exports.MutiPortsManager = void 0;
+exports.I18nManager = exports.i18n = exports.EnvManager = exports.PortManager = exports.ProjectManager = exports.MutiPortsManager = void 0;
 var manager_1 = require("./manager");
 Object.defineProperty(exports, "MutiPortsManager", { enumerable: true, get: function () { return manager_1.MutiPortsManager; } });
 var project_manager_1 = require("./project-manager");
@@ -23,5 +23,8 @@ var port_manager_1 = require("./port-manager");
 Object.defineProperty(exports, "PortManager", { enumerable: true, get: function () { return port_manager_1.PortManager; } });
 var env_manager_1 = require("./env-manager");
 Object.defineProperty(exports, "EnvManager", { enumerable: true, get: function () { return env_manager_1.EnvManager; } });
+var i18n_1 = require("./i18n");
+Object.defineProperty(exports, "i18n", { enumerable: true, get: function () { return i18n_1.i18n; } });
+Object.defineProperty(exports, "I18nManager", { enumerable: true, get: function () { return i18n_1.I18nManager; } });
 __exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

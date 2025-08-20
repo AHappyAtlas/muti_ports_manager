@@ -6,6 +6,7 @@ import { PortManager } from './port-manager';
 import { ProjectManager } from './project-manager';
 import { EnvManager } from './env-manager';
 import { Project, Port } from './types';
+import { i18n } from './i18n';
 
 class MutiPortsManager {
   private program: Command;
@@ -24,14 +25,31 @@ class MutiPortsManager {
   private setupCommands(): void {
     this.program
       .name('muti-ports')
-      .description('多端口管理器 - 管理多个项目的端口')
-      .version('1.0.0');
+      .description(i18n.t('cli.description'))
+      .version(i18n.t('cli.version'));
+
+    // 语言设置命令
+    this.program
+      .command('set-language')
+      .description('Set language (en/zh)')
+      .argument('<language>', 'Language code (en/zh)')
+      .action((language) => {
+        this.setLanguage(language);
+      });
+
+    // 显示当前语言
+    this.program
+      .command('language')
+      .description('Show current language')
+      .action(() => {
+        this.showLanguage();
+      });
 
     // 添加项目
     this.program
       .command('add-project')
-      .description('添加新项目')
-      .option('-n, --name <name>', '项目名称')
+      .description(i18n.t('command.add-project.description'))
+      .option('-n, --name <name>', i18n.t('option.name'))
       .action(async (options) => {
         await this.addProject(options);
       });
@@ -39,10 +57,10 @@ class MutiPortsManager {
     // 添加端口到项目
     this.program
       .command('add-port')
-      .description('添加端口到项目')
-      .option('-p, --project <name>', '项目名称')
-      .option('-P, --port <port>', '端口号')
-      .option('-N, --name <name>', '端口名称')
+      .description(i18n.t('command.add-port.description'))
+      .option('-p, --project <name>', i18n.t('option.project'))
+      .option('-P, --port <port>', i18n.t('option.port'))
+      .option('-N, --name <name>', i18n.t('option.port-name'))
       .action(async (options) => {
         await this.addPort(options);
       });
@@ -50,8 +68,8 @@ class MutiPortsManager {
     // 删除项目
     this.program
       .command('remove-project')
-      .description('删除项目')
-      .option('-n, --name <name>', '项目名称')
+      .description(i18n.t('command.remove-project.description'))
+      .option('-n, --name <name>', i18n.t('option.name'))
       .action(async (options) => {
         await this.removeProject(options);
       });
@@ -59,9 +77,9 @@ class MutiPortsManager {
     // 删除端口
     this.program
       .command('remove-port')
-      .description('从项目中删除端口')
-      .option('-p, --project <name>', '项目名称')
-      .option('-P, --port <port>', '端口号')
+      .description(i18n.t('command.remove-port.description'))
+      .option('-p, --project <name>', i18n.t('option.project'))
+      .option('-P, --port <port>', i18n.t('option.port'))
       .action(async (options) => {
         await this.removePort(options);
       });
@@ -69,10 +87,10 @@ class MutiPortsManager {
     // 更新端口名称
     this.program
       .command('update-port-name')
-      .description('更新端口名称')
-      .option('-p, --project <name>', '项目名称')
-      .option('-P, --port <port>', '端口号')
-      .option('-N, --name <name>', '新的端口名称')
+      .description(i18n.t('command.update-port-name.description'))
+      .option('-p, --project <name>', i18n.t('option.project'))
+      .option('-P, --port <port>', i18n.t('option.port'))
+      .option('-N, --name <name>', i18n.t('option.port-name'))
       .action(async (options) => {
         await this.updatePortName(options);
       });
@@ -80,8 +98,8 @@ class MutiPortsManager {
     // 查看端口占用
     this.program
       .command('check-port')
-      .description('检查端口占用情况')
-      .argument('<port>', '端口号')
+      .description(i18n.t('command.check-port.description'))
+      .argument('<port>', i18n.t('option.port'))
       .action(async (port) => {
         await this.checkPort(port);
       });
@@ -89,8 +107,8 @@ class MutiPortsManager {
     // 结束占用端口的进程
     this.program
       .command('kill-port')
-      .description('结束占用指定端口的进程')
-      .argument('<port>', '端口号')
+      .description(i18n.t('command.kill-port.description'))
+      .argument('<port>', i18n.t('option.port'))
       .action(async (port) => {
         await this.killPort(port);
       });
@@ -98,8 +116,8 @@ class MutiPortsManager {
     // 列出所有项目和端口
     this.program
       .command('list')
-      .description('列出所有项目和端口')
-      .option('-p, --project <name>', '只显示指定项目')
+      .description(i18n.t('command.list.description'))
+      .option('-p, --project <name>', i18n.t('option.project'))
       .action(async (options) => {
         await this.listProjects(options);
       });
@@ -107,10 +125,10 @@ class MutiPortsManager {
     // 添加端口到.env文件
     this.program
       .command('add-to-env')
-      .description('将端口添加到.env文件')
-      .option('-p, --project <name>', '项目名称')
-      .option('-e, --env-file <path>', '.env文件路径')
-      .option('-n, --name <name>', '端口名称')
+      .description(i18n.t('command.add-to-env.description'))
+      .option('-p, --project <name>', i18n.t('option.project'))
+      .option('-e, --env-file <path>', i18n.t('option.env-file'))
+      .option('-n, --name <name>', i18n.t('option.port-name'))
       .action(async (options) => {
         await this.addToEnv(options);
       });
@@ -118,9 +136,9 @@ class MutiPortsManager {
     // 从.env文件移除端口
     this.program
       .command('remove-from-env')
-      .description('从.env文件移除端口')
-      .option('-e, --env-file <path>', '.env文件路径')
-      .option('-n, --name <name>', '端口名称')
+      .description(i18n.t('command.remove-from-env.description'))
+      .option('-e, --env-file <path>', i18n.t('option.env-file'))
+      .option('-n, --name <name>', i18n.t('option.port-name'))
       .action(async (options) => {
         await this.removeFromEnv(options);
       });
@@ -128,8 +146,8 @@ class MutiPortsManager {
     // 列出.env文件中的端口
     this.program
       .command('list-env')
-      .description('列出.env文件中的端口变量')
-      .option('-e, --env-file <path>', '.env文件路径')
+      .description(i18n.t('command.list-env.description'))
+      .option('-e, --env-file <path>', i18n.t('option.env-file'))
       .action(async (options) => {
         await this.listEnv(options);
       });
@@ -142,6 +160,21 @@ class MutiPortsManager {
       });
   }
 
+  private setLanguage(language: string): void {
+    if (language === 'en' || language === 'zh') {
+      i18n.setLanguage(language as 'en' | 'zh');
+      console.log(chalk.green(i18n.t('language.set', { language })));
+    } else {
+      console.log(chalk.red('Invalid language. Use "en" or "zh"'));
+    }
+  }
+
+  private showLanguage(): void {
+    const currentLang = i18n.getLanguage();
+    console.log(chalk.blue(i18n.t('language.current', { language: currentLang })));
+    console.log(chalk.cyan(i18n.t('language.available')));
+  }
+
   private async addProject(options: { name?: string }): Promise<void> {
     try {
       let projectName = options.name;
@@ -152,7 +185,7 @@ class MutiPortsManager {
           {
             type: 'input',
             name: 'projectName',
-            message: '请输入项目名称:',
+            message: i18n.t('prompt.project-name'),
             default: currentDir
           }
         ]);
@@ -161,10 +194,10 @@ class MutiPortsManager {
 
       if (projectName) {
         await this.projectManager.addProject(projectName);
-        console.log(chalk.green(`✅ 项目 "${projectName}" 添加成功！`));
+        console.log(chalk.green(i18n.t('success.project-added', { name: projectName })));
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 添加项目失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.add-project-failed', { message: (error as Error).message })));
     }
   }
 
@@ -177,7 +210,7 @@ class MutiPortsManager {
       if (!projectName) {
         const projects = await this.projectManager.getProjects();
         if (projects.length === 0) {
-          console.log(chalk.yellow('⚠️  还没有项目，请先添加项目'));
+          console.log(chalk.yellow(i18n.t('warning.no-projects-general')));
           return;
         }
 
@@ -185,7 +218,7 @@ class MutiPortsManager {
           {
             type: 'list',
             name: 'projectName',
-            message: '选择项目:',
+            message: i18n.t('prompt.select-project'),
             choices: projects.map(p => p.name)
           }
         ]);
@@ -197,10 +230,10 @@ class MutiPortsManager {
           {
             type: 'input',
             name: 'port',
-            message: '请输入端口号:',
+            message: i18n.t('prompt.port-number'),
             validate: (input) => {
               const portNum = parseInt(input);
-              return (portNum >= 1 && portNum <= 65535) ? true : '端口号必须在1-65535之间';
+              return (portNum >= 1 && portNum <= 65535) ? true : i18n.t('validation.port-range');
             }
           }
         ]);
@@ -212,7 +245,7 @@ class MutiPortsManager {
           {
             type: 'input',
             name: 'portName',
-            message: '请输入端口名称:',
+            message: i18n.t('prompt.port-name'),
             default: `PORT_${portNumber}`
           }
         ]);
@@ -225,17 +258,17 @@ class MutiPortsManager {
         // 检查端口是否被占用
         const isOccupied = await this.portManager.isPortOccupied(port);
         if (isOccupied) {
-          console.log(chalk.yellow(`⚠️  端口 ${port} 已被占用`));
+          console.log(chalk.yellow(i18n.t('warning.port-occupied', { port })));
           const processInfo = await this.portManager.getProcessInfo(port);
           if (processInfo) {
-            console.log(chalk.cyan(`   进程信息: ${processInfo.name} (PID: ${processInfo.pid})`));
+            console.log(chalk.cyan(i18n.t('info.process-info', { name: processInfo.name, pid: processInfo.pid })));
           }
           
           const answer = await inquirer.prompt([
             {
               type: 'confirm',
               name: 'continue',
-              message: '是否仍要添加此端口？',
+              message: i18n.t('prompt.continue-add-port'),
               default: false
             }
           ]);
@@ -245,11 +278,13 @@ class MutiPortsManager {
           }
         }
 
-        await this.projectManager.addPortToProject(projectName, port, portName);
-        console.log(chalk.green(`✅ 端口 ${port} (${portName}) 已添加到项目 "${projectName}"`));
+        if (projectName && portName) {
+          await this.projectManager.addPortToProject(projectName, port, portName);
+          console.log(chalk.green(i18n.t('success.port-added', { port, name: portName, project: projectName })));
+        }
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 添加端口失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.add-port-failed', { message: (error as Error).message })));
     }
   }
 
@@ -260,7 +295,7 @@ class MutiPortsManager {
       if (!projectName) {
         const projects = await this.projectManager.getProjects();
         if (projects.length === 0) {
-          console.log(chalk.yellow('⚠️  没有项目可删除'));
+          console.log(chalk.yellow(i18n.t('warning.no-projects-to-delete')));
           return;
         }
 
@@ -268,28 +303,30 @@ class MutiPortsManager {
           {
             type: 'list',
             name: 'projectName',
-            message: '选择要删除的项目:',
+            message: i18n.t('prompt.select-project'),
             choices: projects.map(p => p.name)
           }
         ]);
         projectName = answer.projectName;
       }
 
-      const confirm = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'confirm',
-          message: `确定要删除项目 "${projectName}" 吗？这将删除所有相关端口信息。`,
-          default: false
-        }
-      ]);
+      if (projectName) {
+        const confirm = await inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'confirm',
+            message: i18n.t('prompt.confirm-delete-project', { name: projectName }),
+            default: false
+          }
+        ]);
 
-      if (confirm.confirm && projectName) {
-        await this.projectManager.removeProject(projectName);
-        console.log(chalk.green(`✅ 项目 "${projectName}" 删除成功！`));
+        if (confirm.confirm) {
+          await this.projectManager.removeProject(projectName);
+          console.log(chalk.green(i18n.t('success.project-removed', { name: projectName })));
+        }
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 删除项目失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.remove-project-failed', { message: (error as Error).message })));
     }
   }
 
@@ -301,7 +338,7 @@ class MutiPortsManager {
       if (!projectName) {
         const projects = await this.projectManager.getProjects();
         if (projects.length === 0) {
-          console.log(chalk.yellow('⚠️  没有项目'));
+          console.log(chalk.yellow(i18n.t('warning.no-projects-general')));
           return;
         }
 
@@ -309,7 +346,7 @@ class MutiPortsManager {
           {
             type: 'list',
             name: 'projectName',
-            message: '选择项目:',
+            message: i18n.t('prompt.select-project'),
             choices: projects.map(p => p.name)
           }
         ]);
@@ -320,7 +357,7 @@ class MutiPortsManager {
         if (projectName) {
           const project = await this.projectManager.getProject(projectName);
           if (!project || project.ports.length === 0) {
-            console.log(chalk.yellow(`⚠️  项目 "${projectName}" 没有端口`));
+            console.log(chalk.yellow(i18n.t('warning.project-no-ports', { name: projectName })));
             return;
           }
 
@@ -328,7 +365,7 @@ class MutiPortsManager {
             {
               type: 'list',
               name: 'port',
-              message: '选择要删除的端口:',
+              message: i18n.t('prompt.select-project'),
               choices: project.ports.map(p => `${p.number} (${p.name})`)
             }
           ]);
@@ -340,10 +377,10 @@ class MutiPortsManager {
         const port = parseInt(portNumber);
 
         await this.projectManager.removePortFromProject(projectName, port);
-        console.log(chalk.green(`✅ 端口 ${port} 已从项目 "${projectName}" 中删除`));
+        console.log(chalk.green(i18n.t('success.port-removed', { port, project: projectName })));
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 删除端口失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.remove-port-failed', { message: (error as Error).message })));
     }
   }
 
@@ -356,7 +393,7 @@ class MutiPortsManager {
       if (!projectName) {
         const projects = await this.projectManager.getProjects();
         if (projects.length === 0) {
-          console.log(chalk.yellow('⚠️  没有项目'));
+          console.log(chalk.yellow(i18n.t('warning.no-projects-general')));
           return;
         }
 
@@ -364,7 +401,7 @@ class MutiPortsManager {
           {
             type: 'list',
             name: 'projectName',
-            message: '选择项目:',
+            message: i18n.t('prompt.select-project'),
             choices: projects.map(p => p.name)
           }
         ]);
@@ -375,7 +412,7 @@ class MutiPortsManager {
         if (projectName) {
           const project = await this.projectManager.getProject(projectName);
           if (!project || project.ports.length === 0) {
-            console.log(chalk.yellow(`⚠️  项目 "${projectName}" 没有端口`));
+            console.log(chalk.yellow(i18n.t('warning.project-no-ports', { name: projectName })));
             return;
           }
 
@@ -383,7 +420,7 @@ class MutiPortsManager {
             {
               type: 'list',
               name: 'port',
-              message: '选择要更新的端口:',
+              message: i18n.t('prompt.select-project'),
               choices: project.ports.map(p => `${p.number} (${p.name})`)
             }
           ]);
@@ -396,7 +433,7 @@ class MutiPortsManager {
           {
             type: 'input',
             name: 'newName',
-            message: '请输入新的端口名称:'
+            message: i18n.t('prompt.new-port-name')
           }
         ]);
         newName = answer.newName;
@@ -406,10 +443,10 @@ class MutiPortsManager {
         const port = parseInt(portNumber);
 
         await this.projectManager.updatePortName(projectName, port, newName);
-        console.log(chalk.green(`✅ 端口 ${port} 的名称已更新为 "${newName}"`));
+        console.log(chalk.green(i18n.t('success.port-name-updated', { port, name: newName })));
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 更新端口名称失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.update-port-name-failed', { message: (error as Error).message })));
     }
   }
 
@@ -419,18 +456,18 @@ class MutiPortsManager {
       const isOccupied = await this.portManager.isPortOccupied(portNumber);
       
       if (isOccupied) {
-        console.log(chalk.red(`❌ 端口 ${portNumber} 已被占用`));
+        console.log(chalk.red(i18n.t('info.port-occupied', { port: portNumber })));
         const processInfo = await this.portManager.getProcessInfo(portNumber);
         if (processInfo) {
-          console.log(chalk.cyan(`   进程名称: ${processInfo.name}`));
-          console.log(chalk.cyan(`   进程ID: ${processInfo.pid}`));
-          console.log(chalk.cyan(`   命令行: ${processInfo.cmd}`));
+          console.log(chalk.cyan(i18n.t('info.process-name', { name: processInfo.name })));
+          console.log(chalk.cyan(i18n.t('info.process-id', { pid: processInfo.pid })));
+          console.log(chalk.cyan(i18n.t('info.command-line', { cmd: processInfo.cmd })));
         }
       } else {
-        console.log(chalk.green(`✅ 端口 ${portNumber} 可用`));
+        console.log(chalk.green(i18n.t('info.port-available', { port: portNumber })));
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 检查端口失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.check-port-failed', { message: (error as Error).message })));
     }
   }
 
@@ -440,30 +477,30 @@ class MutiPortsManager {
       const isOccupied = await this.portManager.isPortOccupied(portNumber);
       
       if (!isOccupied) {
-        console.log(chalk.yellow(`⚠️  端口 ${portNumber} 未被占用`));
+        console.log(chalk.yellow(i18n.t('warning.port-not-occupied', { port: portNumber })));
         return;
       }
 
       const processInfo = await this.portManager.getProcessInfo(portNumber);
       if (processInfo) {
-        console.log(chalk.yellow(`⚠️  即将结束进程: ${processInfo.name} (PID: ${processInfo.pid})`));
+        console.log(chalk.yellow(i18n.t('info.killing-process', { name: processInfo.name, pid: processInfo.pid })));
         
         const confirm = await inquirer.prompt([
           {
             type: 'confirm',
             name: 'confirm',
-            message: '确定要结束此进程吗？',
+            message: i18n.t('prompt.confirm-kill-process'),
             default: false
           }
         ]);
 
         if (confirm.confirm) {
           await this.portManager.killProcess(portNumber);
-          console.log(chalk.green(`✅ 端口 ${portNumber} 的进程已结束`));
+          console.log(chalk.green(i18n.t('success.port-killed', { port: portNumber })));
         }
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 结束进程失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.kill-port-failed', { message: (error as Error).message })));
     }
   }
 
@@ -472,26 +509,26 @@ class MutiPortsManager {
       const projects = await this.projectManager.getProjects();
       
       if (projects.length === 0) {
-        console.log(chalk.yellow('📝 还没有项目'));
+        console.log(chalk.yellow(i18n.t('info.no-projects')));
         return;
       }
 
       if (options.project) {
         const project = projects.find(p => p.name === options.project);
         if (!project) {
-          console.log(chalk.red(`❌ 项目 "${options.project}" 不存在`));
+          console.log(chalk.red(i18n.t('error.project-not-found', { name: options.project })));
           return;
         }
         this.displayProject(project);
       } else {
-        console.log(chalk.blue('📋 所有项目:'));
+        console.log(chalk.blue(i18n.t('info.all-projects')));
         projects.forEach(project => {
           this.displayProject(project);
           console.log(''); // 空行分隔
         });
       }
     } catch (error) {
-      console.error(chalk.red(`❌ 列出项目失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.list-projects-failed', { message: (error as Error).message })));
     }
   }
 
@@ -504,7 +541,7 @@ class MutiPortsManager {
           {
             type: 'input',
             name: 'portName',
-            message: '请输入端口名称:'
+            message: i18n.t('prompt.port-name')
           }
         ]);
         portName = answer.portName;
@@ -516,9 +553,11 @@ class MutiPortsManager {
         portName
       });
 
-      console.log(chalk.green(`✅ 端口 "${portName}" 已添加到.env文件`));
+      if (portName) {
+        console.log(chalk.green(i18n.t('success.port-added-to-env', { name: portName })));
+      }
     } catch (error) {
-      console.error(chalk.red(`❌ 添加到.env文件失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.add-to-env-failed', { message: (error as Error).message })));
     }
   }
 
@@ -531,7 +570,7 @@ class MutiPortsManager {
           {
             type: 'input',
             name: 'portName',
-            message: '请输入要移除的端口名称:'
+            message: i18n.t('prompt.port-name')
           }
         ]);
         portName = answer.portName;
@@ -542,9 +581,11 @@ class MutiPortsManager {
         portName
       });
 
-      console.log(chalk.green(`✅ 端口 "${portName}" 已从.env文件移除`));
+      if (portName) {
+        console.log(chalk.green(i18n.t('success.port-removed-from-env', { name: portName })));
+      }
     } catch (error) {
-      console.error(chalk.red(`❌ 从.env文件移除失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.remove-from-env-failed', { message: (error as Error).message })));
     }
   }
 
@@ -553,27 +594,27 @@ class MutiPortsManager {
       const portVars = await this.envManager.listEnvPorts(options.envFile);
       
       if (portVars.length === 0) {
-        console.log(chalk.yellow('📝 .env文件中没有端口变量'));
+        console.log(chalk.yellow(i18n.t('warning.no-env-ports')));
         return;
       }
 
-      console.log(chalk.blue('📋 .env文件中的端口变量:'));
+      console.log(chalk.blue(i18n.t('info.env-ports')));
       portVars.forEach(({ name, value }) => {
-        console.log(chalk.cyan(`   ${name}=${value}`));
+        console.log(chalk.cyan(i18n.t('display.env-port-item', { name, value })));
       });
     } catch (error) {
-      console.error(chalk.red(`❌ 列出.env文件失败: ${(error as Error).message}`));
+      console.error(chalk.red(i18n.t('error.list-env-failed', { message: (error as Error).message })));
     }
   }
 
   private displayProject(project: Project): void {
-    console.log(chalk.cyan(`📁 项目: ${project.name}`));
+    console.log(chalk.cyan(i18n.t('display.project', { name: project.name })));
     if (project.ports.length === 0) {
-      console.log(chalk.gray('   没有端口'));
+      console.log(chalk.gray(i18n.t('display.no-ports')));
     } else {
-      console.log(chalk.gray('   端口:'));
+      console.log(chalk.gray(i18n.t('display.ports')));
       project.ports.forEach(port => {
-        console.log(chalk.gray(`     - ${port.number} (${port.name})`));
+        console.log(chalk.gray(i18n.t('display.port-item', { port: port.number, name: port.name })));
       });
     }
   }
