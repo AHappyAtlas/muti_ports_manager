@@ -3,6 +3,7 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import psList from 'ps-list';
 import { ProcessInfo, PortStatus } from './types';
+import { i18n } from './i18n';
 
 const execAsync = promisify(exec);
 
@@ -189,7 +190,7 @@ export class PortManager {
         return port;
       }
     }
-    throw new Error(`在端口范围 ${startPort}-${endPort} 内没有可用端口`);
+    throw new Error(i18n.t('error.no-available-ports', { startPort, endPort }));
   }
 
   async getPortStatus(port: number): Promise<PortStatus> {

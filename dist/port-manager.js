@@ -8,6 +8,7 @@ const net_1 = __importDefault(require("net"));
 const child_process_1 = require("child_process");
 const util_1 = require("util");
 const ps_list_1 = __importDefault(require("ps-list"));
+const i18n_1 = require("./i18n");
 const execAsync = (0, util_1.promisify)(child_process_1.exec);
 class PortManager {
     constructor() {
@@ -178,7 +179,7 @@ class PortManager {
                 return port;
             }
         }
-        throw new Error(`在端口范围 ${startPort}-${endPort} 内没有可用端口`);
+        throw new Error(i18n_1.i18n.t('error.no-available-ports', { startPort, endPort }));
     }
     async getPortStatus(port) {
         const isOccupied = await this.isPortOccupied(port);

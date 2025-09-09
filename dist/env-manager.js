@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnvManager = void 0;
 const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
+const i18n_1 = require("./i18n");
 class EnvManager {
     constructor(projectManager) {
         this.projectManager = projectManager;
@@ -13,7 +14,7 @@ class EnvManager {
     async addPortToEnv(options) {
         const { projectName, envFile, portName } = options;
         if (!portName) {
-            throw new Error('端口名称不能为空');
+            throw new Error(i18n_1.i18n.t('error.env-port-name-empty'));
         }
         // 确定项目名称
         let targetProjectName = projectName;
@@ -21,19 +22,19 @@ class EnvManager {
             const currentDir = path_1.default.basename(process.cwd());
             const project = await this.projectManager.getProject(currentDir);
             if (!project) {
-                throw new Error(`当前目录 "${currentDir}" 不是已知项目，请指定项目名称`);
+                throw new Error(i18n_1.i18n.t('error.env-project-not-found', { dir: currentDir }));
             }
             targetProjectName = currentDir;
         }
         // 获取项目信息
         const project = await this.projectManager.getProject(targetProjectName);
         if (!project) {
-            throw new Error(`项目 "${targetProjectName}" 不存在`);
+            throw new Error(i18n_1.i18n.t('error.project-not-found', { name: targetProjectName }));
         }
         // 查找端口
         const port = project.ports.find(p => p.name === portName);
         if (!port) {
-            throw new Error(`项目 "${targetProjectName}" 中不存在名称为 "${portName}" 的端口`);
+            throw new Error(i18n_1.i18n.t('error.env-port-not-found', { portName, project: targetProjectName }));
         }
         // 确定.env文件路径
         let targetEnvFile = envFile;
@@ -80,7 +81,7 @@ class EnvManager {
     async removePortFromEnv(options) {
         const { projectName, envFile, portName } = options;
         if (!portName) {
-            throw new Error('端口名称不能为空');
+            throw new Error(i18n_1.i18n.t('error.env-port-name-empty'));
         }
         // 确定.env文件路径
         let targetEnvFile = envFile;
@@ -101,7 +102,7 @@ class EnvManager {
             await fs_1.promises.writeFile(targetEnvFile, filteredLines.join('\n'), 'utf8');
         }
         catch (error) {
-            throw new Error(`无法读取或写入.env文件: ${error.message}`);
+            throw new Error(i18n_1.i18n.t('error.env-file-read-write', { message: error.message }));
         }
     }
     async listEnvPorts(envFile) {

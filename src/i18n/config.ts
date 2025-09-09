@@ -35,7 +35,7 @@ export class LanguageConfigManager {
           fallbackLanguage: config.fallbackLanguage || 'en'
         };
       }
-    } catch (error) {
+    } catch {
       console.warn('Failed to load language config, using default');
     }
 

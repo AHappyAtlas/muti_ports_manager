@@ -83,7 +83,7 @@ export class I18nManager {
 const enMessages: Record<string, string> = {
   // CLI 描述
   'cli.description': 'Multi-Port Manager - Manage ports for multiple projects',
-  'cli.version': '1.0.0',
+  'cli.version': '1.1.2',
   
   // 命令描述
   'command.add-project.description': 'Add a new project',
@@ -108,6 +108,7 @@ const enMessages: Record<string, string> = {
   // 交互提示
   'prompt.project-name': 'Enter project name:',
   'prompt.select-project': 'Select project:',
+  'prompt.select-port': 'Select port:',
   'prompt.port-number': 'Enter port number:',
   'prompt.port-name': 'Enter port name:',
   'prompt.new-port-name': 'Enter new port name:',
@@ -150,6 +151,17 @@ const enMessages: Record<string, string> = {
   'error.remove-from-env-failed': '❌ Failed to remove from .env file: {message}',
   'error.list-env-failed': '❌ Failed to list .env file: {message}',
   'error.project-not-found': '❌ Project "{name}" does not exist',
+  'error.project-name-empty': 'Project name cannot be empty',
+  'error.project-already-exists': 'Project "{name}" already exists',
+  'error.port-invalid': 'Port number must be an integer between 1-65535',
+  'error.port-already-exists': 'Project "{project}" already contains port {port}',
+  'error.port-not-exists': 'Project "{project}" does not contain port {port}',
+  'error.port-name-empty': 'Port name cannot be empty',
+  'error.env-port-name-empty': 'Port name cannot be empty',
+  'error.env-project-not-found': 'Current directory "{dir}" is not a known project, please specify project name',
+  'error.env-port-not-found': 'Port "{portName}" does not exist in project "{project}"',
+  'error.env-file-read-write': 'Cannot read or write .env file: {message}',
+  'error.no-available-ports': 'No available ports found in range {startPort}-{endPort}',
   
   // 信息消息
   'info.port-occupied': '❌ Port {port} is occupied',
@@ -180,7 +192,7 @@ const enMessages: Record<string, string> = {
 const zhMessages: Record<string, string> = {
   // CLI 描述
   'cli.description': '多端口管理器 - 管理多个项目的端口',
-  'cli.version': '1.0.0',
+  'cli.version': '1.1.2',
   
   // 命令描述
   'command.add-project.description': '添加新项目',
@@ -205,6 +217,7 @@ const zhMessages: Record<string, string> = {
   // 交互提示
   'prompt.project-name': '请输入项目名称:',
   'prompt.select-project': '选择项目:',
+  'prompt.select-port': '选择端口:',
   'prompt.port-number': '请输入端口号:',
   'prompt.port-name': '请输入端口名称:',
   'prompt.new-port-name': '请输入新的端口名称:',
@@ -247,6 +260,17 @@ const zhMessages: Record<string, string> = {
   'error.remove-from-env-failed': '❌ 从.env文件移除失败: {message}',
   'error.list-env-failed': '❌ 列出.env文件失败: {message}',
   'error.project-not-found': '❌ 项目 "{name}" 不存在',
+  'error.project-name-empty': '项目名称不能为空',
+  'error.project-already-exists': '项目 "{name}" 已存在',
+  'error.port-invalid': '端口号必须是1-65535之间的整数',
+  'error.port-already-exists': '项目 "{project}" 已包含端口 {port}',
+  'error.port-not-exists': '项目 "{project}" 不包含端口 {port}',
+  'error.port-name-empty': '端口名称不能为空',
+  'error.env-port-name-empty': '端口名称不能为空',
+  'error.env-project-not-found': '当前目录 "{dir}" 不是已知项目，请指定项目名称',
+  'error.env-port-not-found': '项目 "{project}" 中不存在名称为 "{portName}" 的端口',
+  'error.env-file-read-write': '无法读取或写入.env文件: {message}',
+  'error.no-available-ports': '在端口范围 {startPort}-{endPort} 内没有可用端口',
   
   // 信息消息
   'info.port-occupied': '❌ 端口 {port} 已被占用',

@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { ProjectManager } from './project-manager';
 import { EnvFileOptions } from './types';
+import { i18n } from './i18n';
 
 export class EnvManager {
   private projectManager: ProjectManager;
@@ -14,7 +15,7 @@ export class EnvManager {
     const { projectName, envFile, portName } = options;
 
     if (!portName) {
-      throw new Error('端口名称不能为空');
+      throw new Error(i18n.t('error.env-port-name-empty'));
     }
 
     // 确定项目名称
@@ -23,7 +24,7 @@ export class EnvManager {
       const currentDir = path.basename(process.cwd());
       const project = await this.projectManager.getProject(currentDir);
       if (!project) {
-        throw new Error(`当前目录 "${currentDir}" 不是已知项目，请指定项目名称`);
+        throw new Error(i18n.t('error.env-project-not-found', { dir: currentDir }));
       }
       targetProjectName = currentDir;
     }
@@ -31,13 +32,13 @@ export class EnvManager {
     // 获取项目信息
     const project = await this.projectManager.getProject(targetProjectName);
     if (!project) {
-      throw new Error(`项目 "${targetProjectName}" 不存在`);
+      throw new Error(i18n.t('error.project-not-found', { name: targetProjectName }));
     }
 
     // 查找端口
     const port = project.ports.find(p => p.name === portName);
     if (!port) {
-      throw new Error(`项目 "${targetProjectName}" 中不存在名称为 "${portName}" 的端口`);
+      throw new Error(i18n.t('error.env-port-not-found', { portName, project: targetProjectName }));
     }
 
     // 确定.env文件路径
@@ -91,7 +92,7 @@ export class EnvManager {
     const { projectName, envFile, portName } = options;
 
     if (!portName) {
-      throw new Error('端口名称不能为空');
+      throw new Error(i18n.t('error.env-port-name-empty'));
     }
 
     // 确定.env文件路径
@@ -115,7 +116,7 @@ export class EnvManager {
       // 写入更新后的内容
       await fs.writeFile(targetEnvFile, filteredLines.join('\n'), 'utf8');
     } catch (error) {
-      throw new Error(`无法读取或写入.env文件: ${(error as Error).message}`);
+      throw new Error(i18n.t('error.env-file-read-write', { message: (error as Error).message }));
     }
   }
 

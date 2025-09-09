@@ -10,7 +10,9 @@
     "build": "tsc",
     "start": "node dist/bin/muti-ports.js",
     "dev": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "prepublishOnly": "npm run build",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
@@ -20,7 +22,7 @@
     "release:preview": "npm version prerelease --preid=beta && npm publish --tag beta",
     "release:rc": "npm version prerelease --preid=rc && npm publish --tag rc",
     "prepublish": "npm run lint && npm run test",
-    "lint": "echo \"Linting check passed\"",
+    "lint": "eslint src/**/*.ts",
     "clean": "rm -rf dist",
     "rebuild": "npm run clean && npm run build",
     "preview": "npm run build && npm start",
@@ -35,17 +37,23 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "commander": "^11.1.0",
     "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
     "inquirer": "^8.2.6",
     "portfinder": "^1.0.32",
-    "ps-list": "^7.2.0",
-    "dotenv": "^16.3.1"
+    "ps-list": "^7.2.0"
   },
   "devDependencies": {
+    "@types/inquirer": "^8.2.10",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.10.0",
-    "typescript": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
+    "eslint": "^9.35.0",
+    "jest": "^30.1.3",
+    "ts-jest": "^29.4.1",
     "ts-node": "^10.9.0",
-    "@types/inquirer": "^8.2.10"
+    "typescript": "^5.3.0"
   }
 }

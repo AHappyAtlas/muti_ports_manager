@@ -328,7 +328,7 @@ class MutiPortsManager {
                         {
                             type: 'list',
                             name: 'port',
-                            message: i18n_1.i18n.t('prompt.select-project'),
+                            message: i18n_1.i18n.t('prompt.select-port'),
                             choices: project.ports.map(p => `${p.number} (${p.name})`)
                         }
                     ]);
@@ -377,7 +377,7 @@ class MutiPortsManager {
                         {
                             type: 'list',
                             name: 'port',
-                            message: i18n_1.i18n.t('prompt.select-project'),
+                            message: i18n_1.i18n.t('prompt.select-port'),
                             choices: project.ports.map(p => `${p.number} (${p.name})`)
                         }
                     ]);

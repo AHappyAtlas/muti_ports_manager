@@ -29,7 +29,7 @@ class LanguageConfigManager {
                 };
             }
         }
-        catch (error) {
+        catch {
             console.warn('Failed to load language config, using default');
         }
         return {

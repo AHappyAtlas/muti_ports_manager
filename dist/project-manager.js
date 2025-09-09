@@ -7,6 +7,7 @@ exports.ProjectManager = void 0;
 const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
 const os_1 = __importDefault(require("os"));
+const i18n_1 = require("./i18n");
 class ProjectManager {
     constructor() {
         this.dataDir = path_1.default.join(os_1.default.homedir(), '.muti-ports-manager');
@@ -35,11 +36,11 @@ class ProjectManager {
     }
     async addProject(name) {
         if (!name || typeof name !== 'string') {
-            throw new Error('项目名称不能为空');
+            throw new Error(i18n_1.i18n.t('error.project-name-empty'));
         }
         const projects = await this.loadProjects();
         if (projects.find(p => p.name === name)) {
-            throw new Error(`项目 "${name}" 已存在`);
+            throw new Error(i18n_1.i18n.t('error.project-already-exists', { name }));
         }
         const newProject = {
             name,
@@ -62,21 +63,21 @@ class ProjectManager {
         const projects = await this.loadProjects();
         const filteredProjects = projects.filter(p => p.name !== name);
         if (filteredProjects.length === projects.length) {
-            throw new Error(`项目 "${name}" 不存在`);
+            throw new Error(i18n_1.i18n.t('error.project-not-found', { name }));
         }
         await this.saveProjects(filteredProjects);
     }
     async addPortToProject(projectName, portNumber, portName) {
         if (!Number.isInteger(portNumber) || portNumber < 1 || portNumber > 65535) {
-            throw new Error('端口号必须是1-65535之间的整数');
+            throw new Error(i18n_1.i18n.t('error.port-invalid'));
         }
         const projects = await this.loadProjects();
         const project = projects.find(p => p.name === projectName);
         if (!project) {
-            throw new Error(`项目 "${projectName}" 不存在`);
+            throw new Error(i18n_1.i18n.t('error.project-not-found', { name: projectName }));
         }
         if (project.ports.find(p => p.number === portNumber)) {
-            throw new Error(`项目 "${projectName}" 已包含端口 ${portNumber}`);
+            throw new Error(i18n_1.i18n.t('error.port-already-exists', { project: projectName, port: portNumber }));
         }
         const newPort = {
             number: portNumber,
@@ -90,16 +91,16 @@ class ProjectManager {
     }
     async removePortFromProject(projectName, portNumber) {
         if (!Number.isInteger(portNumber) || portNumber < 1 || portNumber > 65535) {
-            throw new Error('端口号必须是1-65535之间的整数');
+            throw new Error(i18n_1.i18n.t('error.port-invalid'));
         }
         const projects = await this.loadProjects();
         const project = projects.find(p => p.name === projectName);
         if (!project) {
-            throw new Error(`项目 "${projectName}" 不存在`);
+            throw new Error(i18n_1.i18n.t('error.project-not-found', { name: projectName }));
         }
         const portIndex = project.ports.findIndex(p => p.number === portNumber);
         if (portIndex === -1) {
-            throw new Error(`项目 "${projectName}" 不包含端口 ${portNumber}`);
+            throw new Error(i18n_1.i18n.t('error.port-not-exists', { project: projectName, port: portNumber }));
         }
         project.ports.splice(portIndex, 1);
         project.updatedAt = new Date().toISOString();
@@ -108,16 +109,16 @@ class ProjectManager {
     }
     async updatePortName(projectName, portNumber, newName) {
         if (!newName || typeof newName !== 'string') {
-            throw new Error('端口名称不能为空');
+            throw new Error(i18n_1.i18n.t('error.port-name-empty'));
         }
         const projects = await this.loadProjects();
         const project = projects.find(p => p.name === projectName);
         if (!project) {
-            throw new Error(`项目 "${projectName}" 不存在`);
+            throw new Error(i18n_1.i18n.t('error.project-not-found', { name: projectName }));
         }
         const port = project.ports.find(p => p.number === portNumber);
         if (!port) {
-            throw new Error(`项目 "${projectName}" 不包含端口 ${portNumber}`);
+            throw new Error(i18n_1.i18n.t('error.port-not-exists', { project: projectName, port: portNumber }));
         }
         port.name = newName;
         project.updatedAt = new Date().toISOString();
@@ -128,7 +129,7 @@ class ProjectManager {
         const projects = await this.loadProjects();
         const project = projects.find(p => p.name === projectName);
         if (!project) {
-            throw new Error(`项目 "${projectName}" 不存在`);
+            throw new Error(i18n_1.i18n.t('error.project-not-found', { name: projectName }));
         }
         Object.assign(project, updates, { updatedAt: new Date().toISOString() });
         await this.saveProjects(projects);

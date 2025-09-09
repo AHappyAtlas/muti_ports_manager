@@ -28,7 +28,7 @@ An npm CLI tool for managing ports occupied by multiple projects, with TypeScrip
 
 ![Multi Ports Manager Screenshot](images/screenshot.jpg)
 
-**Current Version: 1.1.0** | [Changelog](CHANGELOG.md) | [Report Bug](https://github.com/AHappyAtlas/muti_ports_manager/issues)
+**Current Version: 1.1.2** | [Changelog](CHANGELOG.md) | [Report Bug](https://github.com/AHappyAtlas/muti_ports_manager/issues)
 
 There are many great port management tools available; however, I didn't find one that really suited my needs for managing multiple projects with named ports and environment variable integration. So I created this enhanced one.
 
@@ -300,7 +300,8 @@ Use this space to list resources you find helpful and would like to give credit 
 
 ## Version History
 
-- **v1.1.0** (Current) - Enhanced CLI interface, improved error handling, and better user experience
+- **v1.1.2** (Current) - Enhanced CLI interface, improved error handling, and better user experience
+- **v1.1.0** - Enhanced CLI interface, improved error handling, and better user experience  
 - **v1.0.0** - Initial release with core functionality
 
 For detailed changes, see [CHANGELOG.md](https://github.com/AHappyAtlas/muti_ports_manager/blob/main/CHANGELOG.md).
